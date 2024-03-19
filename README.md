@@ -44,7 +44,7 @@ private void setIp(int forumId, String ip) throws IOException {
     post("/admin/set_user_ip#set_ip", data, null);
 }
 
-private < T extends Response > T post(String route, Map < String, Object > data, Class < T > responseClass) throws IOException {
+private < T > T post(String route, Map < String, Object > data, Class < T > responseClass) throws IOException {
     HttpURLConnection connection = getConnection(route, "POST");
     String boundary = Long.toHexString(System.currentTimeMillis()); // Just generate some unique random value.
     connection.setRequestProperty("Content-Type", "multipart/form-data; boundary=" + boundary);
@@ -83,11 +83,12 @@ private < T extends Response > T post(String route, Map < String, Object > data,
     return null;
 }
 
-public class CreateUserResponse extends Response {
+public class CreateUserResponse {
+
     private boolean success;
     private String message;
 
-    private Map<String, String[]> errors;
+    private Map< String, String[] > errors;
     @SerializedName("is_developer")
     private boolean isDeveloper;
 
@@ -95,6 +96,7 @@ public class CreateUserResponse extends Response {
     private int userId;
 
     public CreateUserResponse() {
+        //empty constructor for GSON
     }
 
     public boolean isSuccess() {
@@ -103,14 +105,15 @@ public class CreateUserResponse extends Response {
 
     public String getMessage() {
         String msg = message;
+        //Remove html and add line seperators
         msg = msg.replace("</p>", "\n");
-        msg = msg.replace(". ", "\n");
+        msg = msg.replace(". ", ".\n");
         msg = msg.replaceAll("<[^>]+>", "");
         msg = msg.trim();
         return msg;
     }
 
-    public Map<String, String[]> getErrors() {
+    public Map< String, String[] > getErrors() {
         return errors;
     }
 
