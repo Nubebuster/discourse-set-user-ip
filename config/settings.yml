@@ -1,0 +1,3 @@
+plugins:
+  set_user_ip_enabled:
+    default: true
