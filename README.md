@@ -1,4 +1,4 @@
-# Discourse set user ip api route
+# Discourse plugin - set user ip api route
 
 An api route to set registration ip address of a user. This can be used if you register users externally using the built-in createUser route. In this situation the registration ip of the user is set to the server you are creating them from.
 
