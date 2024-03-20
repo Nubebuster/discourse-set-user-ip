@@ -10,6 +10,17 @@ POST /admin/set_user_ip#set_ip
 
 id=Number&ip=String
 
+# Example curl command
+
+```
+curl -X POST "http://127.0.0.1:3000/admin/set_user_ip#set_ip" \
+-H "Content-Type: multipart/form-data;" \
+-H "Api-Key: <key>" \
+-H "Api-Username: <username>" \
+-F "id=1" \
+-F "ip=127.0.0.1"
+```
+
 # Example code for Java
 
 ```java
