@@ -11,10 +11,8 @@ after_initialize do
     load File.expand_path('../config/routes.rb', __FILE__)
   
     module ::SetUserIp
-      class SetUserIpController < ::ApplicationController
+       class SetUserIpController < ::Admin::StaffController
         requires_plugin 'set-user-ip'
-
-        before_action :ensure_admin
   
         def set_ip
           user_id = params[:id]
@@ -35,11 +33,6 @@ after_initialize do
           DB.exec <<~SQL, user_id: user_id, new_ip: new_ip
             UPDATE users SET registration_ip_address = :new_ip WHERE id = :user_id;
           SQL
-        end
-    
-  
-        def ensure_admin
-          raise Discourse::InvalidAccess.new unless current_user&.admin?
         end
       end
     end
