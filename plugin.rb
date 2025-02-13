@@ -1,4 +1,4 @@
-# name: discourse-set-user-ip
+# name: set-user-ip
 # about: An api route to set registration ip address of a user
 # version: 1.0
 # authors: NubeBuster
